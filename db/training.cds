@@ -1,6 +1,9 @@
 namespace com.training;
 
-using { cuid, managed  } from '@sap/cds/common';
+using {
+    cuid,
+    managed
+} from '@sap/cds/common';
 
 
 define type EmailsAddresses_01 : many {
@@ -51,19 +54,28 @@ entity Car {
         virtual discount_2 : Decimal;
 }
 
-entity Course: cuid {
-     Student: Association to many StudentCourse
-                on Student.Course = $self;
+entity Course : cuid {
+    Student : Association to many StudentCourse
+                  on Student.Course = $self;
 }
 
-entity Student : cuid{
+entity Student : cuid {
     Course : Association to many StudentCourse
-                on Course.Student = $self;
+                 on Course.Student = $self;
 }
 
-entity StudentCourse: cuid{
-    Student: Association to Student;
-    Course : Association to Course;
+entity StudentCourse : cuid {
+    Student : Association to Student;
+    Course  : Association to Course;
+}
+
+entity Orders {
+    ClientEmail : String(65);
+    FirstName   : String(30);
+    LastName    : String(30);
+    CreatedOn   : Date;
+    Reviewed    : Boolean;
+    Approved    : Boolean;
 }
 
 
